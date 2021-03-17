@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.4 libraries Brownies cdn</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <input type="text" placeholder="yyyy.mm.dd">
+    <p></p>
+    <script>
+
+        const { cookies, options } = brownies;
+        let p = document.querySelector('p');
+        let inp = document.querySelector('input');
+
+        // delete cookies.birthday;
+        cookies[options] = {
+            expires: 24 * 3600,
+            domain: false,
+            path: '/',
+        };
+
+        inp.addEventListener('keydown', (e) => {
+            if (e.code == "Enter") {
+                cookies.birthday = inp.value;
+                inp.value = "";
+            }
+        })
+
+        function showBirthday() {
+            let arr = cookies.birthday.split('.');
+            let today = new Date();
+            let dateBirtday = new Date();
+            dateBirtday.setDate(arr[2]);
+            dateBirtday.setMonth(+arr[1] - 1);
+            dateBirtday.setHours(0);
+            dateBirtday.setMinutes(0);
+            dateBirtday.setSeconds(0);
+
+            if (dateBirtday - today < 0) dateBirtday.setFullYear(today.getFullYear() + 1);
+            today = Math.floor((dateBirtday - today) / 1000);
+            let tsec = today % 60; today = Math.floor(today / 60);
+            if (tsec < 10) tsec = '0' + tsec;
+            let tmin = today % 60;
+            today = Math.floor(today / 60);
+            if (tmin < 10) tmin = '0' + tmin;
+            let thour = today % 24;
+            today = Math.floor(today / 24);
+
+            p.innerHTML = `До Вашего Дня Рождения ${today} дней  ${thour} часов  ${tmin} минут ${tsec} секунд`;
+
+            setTimeout(showBirthday, 1000);
+        }
+
+        if (cookies.birthday) showBirthday();
+    </script>
+
+</body>
+
+</html>
