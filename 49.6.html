@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.6</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+</head>
+
+<body>
+    <input type="checkbox" id="one">
+    <input type="checkbox" id="two">
+    <input type="checkbox" id="three">
+    <script>
+
+        const { cookies, options } = brownies;
+        cookies[options] = {
+            expires: 24 * 3600,
+            domain: false,
+            path: '/',
+        };
+
+        let one = document.querySelector('#one');
+        let two = document.querySelector('#two');
+        let three = document.querySelector('#three');
+
+        window.onbeforeunload = function () {
+            cookies.one = one.checked;
+            cookies.two = two.checked;
+            cookies.three = three.checked;
+        };
+
+        function setChecked() {
+            if (cookies.one) one.checked = cookies.one;
+            if (cookies.two) two.checked = cookies.two;
+            if (cookies.three) three.checked = cookies.three;
+        }
+        setChecked();
+
+    </script>
+
+</body>
+
+</html>
