@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.7 ResizeObserverAPI & Brownies cdn</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+</head>
+
+<body>
+    <textarea id="x"></textarea>
+    <script>
+        const { cookies } = brownies;
+        let x = document.querySelector('#x');
+        let width, height;
+
+        const ro = new ResizeObserver(entries => {
+             width = entries[0].contentRect.width;
+             height = entries[0].contentRect.height;
+        })
+
+        ro.observe(x);
+
+        window.onbeforeunload = () =>{
+            cookies.width = width;
+            cookies.height = height;
+        }
+
+        if(cookies.width) x.style.width = cookies.width + "px";
+        if(cookies.height) x.style.height = cookies.height + 'px';
+
+    </script>
+</body>
+
+</html>
