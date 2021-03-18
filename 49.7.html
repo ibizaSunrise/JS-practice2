@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.7</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        const { cookies, options } = brownies;
+        cookies[options] = {
+            expires: 24 * 3600,
+            domain: false,
+            path: '/',
+        };
+        let p = document.querySelector('p');
+        //    delete cookies.timer;
+        let time = 10;
+        if (cookies.timer) time = 0;
+
+        +function countDown() {
+            p.innerHTML = time;
+            setTimeout(countDown, 1000);
+            if (time <= 0) {
+                p.innerHTML = "Tаймер остановлен";
+                clearTimeout(countDown, 1000);
+                cookies.timer = stop;
+            }
+            time--;
+        }();
+
+    </script>
+</body>
+
+</html>
