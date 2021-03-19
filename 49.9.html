@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.9</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+</head>
+
+<body>
+    <button id="backward">«</button>
+    <input type="text" id="inp">
+    <button id="forward">»</button>
+    <script>
+        const { cookies } = brownies;
+        let i = 0;
+        let inp = document.querySelector('#inp');
+        let left = document.querySelector('#backward');
+        let right = document.querySelector('#forward');
+
+        // for (let key in cookies) {
+        //     delete cookies[key];
+        // }
+
+        let arr = [];
+        inp.addEventListener('change', function () {
+            arr.push(this.value);
+            cookies.history = arr;
+        })
+
+        left.addEventListener('click', function () {
+            let arr = cookies.history;
+            --i;
+            if (i < 0) {
+                i = arr.length - 1;
+            }
+            if (cookies.history) inp.value = cookies.history[i];
+        });
+        
+        right.addEventListener('click', function () {
+            let arr = cookies.history;
+            ++i;
+            if (i >= arr.length) {
+                i = 0;
+            }
+            if (cookies.history) inp.value = cookies.history[i];
+        });
+
+    </script>
+
+</body>
+
+</html>
