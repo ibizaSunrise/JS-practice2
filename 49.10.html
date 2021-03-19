@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.10</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+
+</head>
+<body>
+    <script>
+        const { cookies, options} = brownies;
+        cookies[options] = {
+            path: '/'
+        }
+
+        let i = cookies.count;
+         if(!cookies.count) alert('first visit');
+    
+       window.onload = () => {
+           if(cookies.timeStart){
+            alert(`с последнего захода прошло ${Math.round(( Date.now() - cookies.timeStart) /1000)} секунд, вы посещали эту страницу ${cookies.count} раз`);
+            i++
+            cookies.count = i;
+           }else{
+            cookies.timeStart = Date.now();
+            cookies.count = 1;
+           }
+       }
+
+    </script>
+</body>
+</html>
