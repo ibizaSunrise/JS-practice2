@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49.11</title>
+    <script src="https://cdn.jsdelivr.net/npm/brownies"></script>
+    <style>
+        #adv {
+            width: 25rem;
+            height: 5rem;
+            border: 3px solid red;
+            text-align: center;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="adv">Your advertisement
+        <button>Hide this advertisement</button>
+    </div>
+
+    <script>
+        const { cookies, options} = brownies;
+        cookies[options] = {
+            expires: 24 * 3600
+        }
+      
+        let adv = document.querySelector('#adv');
+        adv.firstElementChild.addEventListener('click',() =>{
+            adv.style.display = 'none';
+            cookies.hide = 'up';
+        })
+        
+        !cookies.hide ? adv.style.display = 'block': adv.style.display = 'none';;
+    </script>
+</body>
+
+</html>
