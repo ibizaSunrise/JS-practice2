@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0 auto;
+            padding-top: 20vh;
+            padding: 1rem;
+            border: 2px solid darkgray;
+        }
+
+        div {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="form">
+        <div>
+            <label>Name: <input type="text" name="name"></label>
+        </div>
+        <div>
+            <label>Age: <input type="number" name="age"></label>
+        </div>
+        <div>
+            <label>Email: <input type="email" name="email"></label>
+        </div>
+        <div>
+            <textarea name="textarea" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <label>1<input type="checkbox" name="one" id=""> </label>
+            <label>2<input type="checkbox" name="two" id=""> </label>
+            <label>3<input type="checkbox" name="three" id=""></label>
+            <label><input type="radio" name="r"> </label>
+        </div>
+        <div>
+            <label><input type="radio" name="r" value='r1'> </label>
+            <label><input type="radio" name="r" value='r2'></label>
+        </div>
+        <div>
+            Plan:
+            <select name="pro" id="">
+                <option value="free">free</option>
+                <option value="simple">simple</option>
+                <option value="pro">pro</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        const { form } = document.forms;
+
+        setValues();
+
+        function saveForm() {
+            const values = {};
+            for (let field of form) {
+                const { name, type, checked, value } = field;
+                if (name) {
+                    if (type == 'checkbox') {
+                        values[name] = checked;
+                    } else if (type == 'radio') {
+                        values[value] = checked;
+                    } else {
+                        values[name] = value;
+                    }
+
+                }
+            }
+
+            let json = JSON.stringify(values);
+            localStorage.setItem('values', json);
+        }
+
+        form.addEventListener('change', saveForm);
+
+        function setValues() {
+            let values = JSON.parse(localStorage.getItem('values'));
+            console.log(values);
+            for (let field of form) {
+                const { name, type, checked, value } = field;
+                if (name) {
+                    if (type == 'checkbox') {
+                        field.checked = values[name]
+                    } else if (type == 'radio') {
+                        field.checked = values[value];
+                    } else {
+                        field.value = values[name];
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
