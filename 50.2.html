@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50.2</title>
+</head>
+<body>
+    <button id="left">«</button>
+    <input type="text" id="inp">
+    <button id="right">»</button>
+    <script>
+       
+        let i = 0;
+        let inp = document.querySelector('#inp');
+        let left = document.querySelector('#left');
+        let right = document.querySelector('#right');
+
+        let arr = [];
+        inp.addEventListener('change', function () {
+            arr.push(this.value);
+            let json = JSON.stringify(arr);
+            localStorage.setItem('arr', json);
+        })
+
+        left.addEventListener('click', function () {
+            let arr = getArr('arr');
+            --i;
+            if (i < 0) {
+                i = arr.length - 1;
+            }
+           inp.value = arr[i];
+        });
+        
+        right.addEventListener('click', function () {
+            let arr = getArr('arr');
+            ++i;
+            if (i >= arr.length) {
+                i = 0;
+            }
+            inp.value = arr[i];
+        });
+
+        function getArr(str){
+            return JSON.parse(localStorage.getItem(str))
+        }
+</script>
+</body>
+</html>
