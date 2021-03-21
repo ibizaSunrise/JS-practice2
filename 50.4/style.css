@@ -1,0 +1,133 @@
+:root {
+    --white: #fff;
+    --black: #1c2b2b;
+    --primary: #9d0191;
+    --sec: #f37209;
+    --gray: #eee;
+    --dark-gray: #222831;
+    --orang: orangered;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    background-color: var(--gray);
+    color: var(--dark-gray);
+}
+
+p {
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+textarea {
+    resize: vertical;
+}
+
+hr{
+    margin: 0.7rem 0 0.5rem 0;;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    color: var(--primary);
+    line-height: 2;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+}
+
+form>* {
+    margin-bottom: 5px;
+    outline: none;
+    font-size: 1.4rem;
+    padding: 7px;
+    border: 1px solid #777;
+    border-radius: 3px;
+}
+
+form textarea {
+    padding: 7px 0 40px 5px;
+    font-family: inherit;
+}
+
+::placeholder {
+    font-size: 1.3rem;
+}
+
+form button {
+    background-color: var(--orang);
+    color: var(--white);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--primary);
+    transition: 1s linear;
+}
+
+.notes {
+    padding: 1rem;
+    background-color: var(--white);
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.note__counter, .note__text {
+    font-size: 1.4rem;
+    color: var(--dark-gray);
+}
+
+.note__title {
+    font-size: 1.6rem;
+}
+
+.note__btn {
+    padding: 7px;
+    margin-top: 5px;
+    background-color: var(--orang);
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.note__btn:hover {
+    background-color: var(--sec);
+    transition: 0.7s;
+}
+
+.edit-btn {
+    background-color: var(--primary);
+}
+
+.edit-btn:hover {
+    background-color: #a3329a;
+    transition: 0.7s;
+}

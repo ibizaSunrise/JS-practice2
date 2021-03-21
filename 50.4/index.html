@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50.4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>My Notes App</h1>
+            <form>
+                <input type="text" id="note-title" placeholder="Note title" autocomplete="off">
+                <textarea id="note-text" placeholder="Note details"></textarea>
+                <button id="addbtn">Add Note</button>
+            </form>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2>Your Notes</h2>
+            <hr>
+            <div id="notes"> </div>
+        </div>
+    </section>
+    <script>
+        let addBtn = document.querySelector('#addbtn');
+        let addTitle = document.querySelector('#note-title');
+        let addTxt = document.querySelector('#note-text');
+
+        function getNotes() {
+            let notes = localStorage.getItem('notes');
+            if (notes == null) {
+                noteArr = [];
+            } else {
+                noteArr = JSON.parse(notes);
+            }
+        }
+
+        addBtn.addEventListener('click', () => {
+            getNotes();
+
+            let myObj = {
+                title: addTitle.value,
+                text: addTxt.value
+            }
+            noteArr.push(myObj);
+            localStorage.setItem('notes', JSON.stringify(noteArr));
+            addTitle.value = '';
+            addTxt.value = '';
+            showNotes();
+        })
+
+        function showNotes() {
+            getNotes();
+            let html = "";
+            noteArr.forEach(function (element, index) {
+                html += `
+                <div class="notes">
+                    <p class="note__counter">Note ${index + 1}</p>
+                    <h3 class="note__title">${element.title}</h3>
+                    <p class="note__text">${element.text}</p>
+                    <button id = '${index}' class="note__btn" onclick = 'deleteNote(this.id)'>Delete Note</button>
+                    <button id = '${index}' class="note__btn edit-btn" onclick = 'editNote(this.id)'>Edit Note</button>
+                </div>
+                `;
+
+            });
+
+            let noteElem = document.querySelector('#notes');
+            if (noteArr.length != 0) {
+                noteElem.innerHTML = html;
+            } else {
+                noteElem.innerHTML = `<p>Not Notes Yet! Add a note using the form above</p>`;
+            }
+        }
+
+        function deleteNote(index) {
+            getNotes();
+            noteArr.splice(index, 1);
+            localStorage.setItem('notes', JSON.stringify(noteArr));
+            showNotes();
+        }
+
+        function editNote(index) {
+            getNotes();
+            noteArr.findIndex((el, index) => {
+                addTitle.value = el.title;
+                addTxt.value = el.text;
+            })
+            noteArr.splice(index, 1);
+            localStorage.setItem('notes', JSON.stringify(noteArr));
+        }
+
+
+        showNotes();
+    </script>
+</body>
+
+</html>
