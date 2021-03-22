@@ -45,3 +45,12 @@
 
 5. Реализуйте органайзер, хранящий данные в локальном хранилище.
 
+## 53 Canvas
+
+1. На линии, методы lineTo, moveTo, beginPath, closePath, stroke, fill. Задания 53.01- 53.08
+
+2. На фигуры fillRect, strokeRect, clearRect, rect, stroke, fill, arc. Задания 53.09 -53.19
+
+3. На смену цвета: fillStyle, strokeStyle. Задания 53.20 -53.23
+
+4. На циклы 53.24 -
