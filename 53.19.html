@@ -1,0 +1,26 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>53.19</title>
+
+</head>
+
+<body>
+    <canvas style="display: block;"></canvas>
+    <script>
+        const cnv = document.querySelector('canvas');
+        cnv.width = window.innerWidth;
+        cnv.height = window.innerHeight;
+        const ctx = cnv.getContext('2d');
+
+        ctx.beginPath();
+        let radian = (degrees) => (Math.PI /180) * degrees;
+        ctx.arc(100, 100, 75, 0, radian(90));
+        ctx.fill();
+
+    </script>
+
+</body>
+
+</html>
