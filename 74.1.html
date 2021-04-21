@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>74.1, 74.2 symbol</title>
+</head>
+
+<body>
+    <script>
+        let id = Symbol('id');
+        let age = Symbol('age');
+        let func = Symbol('func');
+        let user = {
+            name: 'Joan',
+            surname: 'Smith',
+            [age]: 33,
+ 
+        };
+        user[id] = 3;
+        user[func] = function(){console.log('!')};
+
+        for (let prop in user) {
+            console.log(prop)
+            console.log(user[prop])
+        }
+
+    </script>
+</body>
+
+</html>
