@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>74.3</title>
+</head>
+
+<body>
+    <script>
+        let func = Symbol();
+        let obj = {
+            a: 1,
+            b: 2,
+            c: 3,
+            [func]: function () {
+                let sum = 0
+                for (let key in this) {
+                    sum += this[key];
+                }
+                return sum;
+            }
+        }
+        console.log(obj)
+        console.log(obj[func]());    
+    </script>
+
+</body>
+
+</html>
