@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>74.4</title>
+</head>
+
+<body>
+    <script>
+     
+        function getRandomArr() {
+            let arr = [];
+            let max = 10;
+            let min = 1
+
+            for (let i = 0; i < 10; i++) {
+                arr.push(Math.floor(Math.random() * (max - min)) + min);
+            }
+            let func = Symbol.for('func')
+            arr[func] = function () {
+                return this.reduce((a, b) => a + b, 0);
+            }
+            return arr;
+        }
+
+        function getOneArr(arr1, arr2) {
+            let func = Symbol.for('func')
+            let result = [...arr1, ...arr2]
+            result[func] = getRandomArr()[func]
+            // result[func] = function () {
+            //     return this.reduce((a, b) => a + b, 0);
+            // }
+            return result
+        }
+
+        console.log(getRandomArr())
+        console.log(getOneArr(getRandomArr(), [1, 2, 3]))
+
+    </script>
+</body>
+
+</html>
