@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>функции-генераторы</title>
+</head>
+<body>
+    <script>
+  function *createIterator(arr){
+     for(let i = 0; i< arr.length; i++){
+         yield arr[i];
+     }
+  }
+  let iterator = createIterator([1,2,3]);
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+    </script>
+</body>
+</html>
