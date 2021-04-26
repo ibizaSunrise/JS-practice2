@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цикл for-of и введение в понятие итератора75.01, 02, 03</title>
+</head>
+<body>
+    <p>q</p>
+    <p>w</p>
+    <p>e</p>
+    <script>
+        let arr = [1,2,3];
+        for(let elem of arr){
+            console.log(elem);
+        }
+        console.log(arr[Symbol.iterator])
+
+        let colection = document.querySelectorAll('p');
+
+        for(let elem of colection){
+            elem.innerHTML += ' !';
+        }
+        console.log(colection[Symbol.iterator])
+    
+    </script>
+</body>
+</html>
