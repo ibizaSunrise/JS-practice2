@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оператор spread и итераторы 75.21</title>
+</head>
+<body>
+    
+    <script>
+let obj = {
+    a:1,
+    b:2,
+    c:3,
+    [Symbol.iterator]: function *(){
+        for(let key in this){
+            yield key
+        }
+    }  
+}
+let arr1 = [...obj];
+console.log(arr1)
+
+    </script>
+</body>
+</html>
