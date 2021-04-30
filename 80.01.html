@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с Promise.all 80.01</title>
+</head>
+
+<body>
+    <script>
+
+        let promis1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(getRandomInt(1, 5))
+            }, 1000 * getRandomInt(1, 5))
+        })
+
+        let promis2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(getRandomInt(1, 5))
+            }, 1000 * getRandomInt(1, 5))
+        })
+
+        let promis3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(getRandomInt(1, 5))
+            }, 1000 * getRandomInt(1, 5))
+        })
+
+
+        Promise.all([promis1, promis2, promis3]).then(
+            result => alert(result.reduce((a, b) => a + b), 0),
+            error => alert(error)
+        )
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+    </script>
+</body>
+
+</html>
